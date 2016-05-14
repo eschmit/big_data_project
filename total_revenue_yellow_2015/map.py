@@ -1,0 +1,23 @@
+#!/usr/bin/python
+import sys
+from datetime import datetime
+
+for line in sys.stdin:
+
+    key, value = line.strip().split('\t')
+    pickup_datetime = key.split(',')[0]
+    
+        
+    pickup_date = datetime.strptime(pickup_datetime, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')
+
+
+    values = value.split(',')
+    
+    if len(values) == 16: # may need to check values[0] !=
+
+        fare_amount = values[10]
+        extra = values[11]
+        tip_amount = values[13]
+
+    
+        print ("%s\t%s,%s,%s" % (pickup_date, fare_amount, extra, tip_amount))
